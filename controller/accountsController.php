@@ -12,6 +12,8 @@ class AccountsController extends Account{
     public function deleteUser($id){
         return $this->deleteAccount($id);
     }
+    public function getAccountId($user_id){
+        return $this->getAccount($user_id);
+    }
     
 }
-?>

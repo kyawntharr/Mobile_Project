@@ -5,12 +5,10 @@ include_once __DIR__ . '/controller/toolsController.php';
 
 $toolsController = new toolsController();
 $id = $_GET['id'];
-// echo $id;
 
 $tool_Down_Controller = new toolDownController();
 $tools = $tool_Down_Controller->showAllTollDown($id);
 
-// echo $_SESSION['ntoolcat'];
 ?>
 
 <link rel="stylesheet" href="assets/css/dir.css">
@@ -20,26 +18,20 @@ $tools = $tool_Down_Controller->showAllTollDown($id);
         <div class="path col-12 ">
             <ul>
                 <li>
-                    <a href="" unlink><i class="ri-folder-2-line">&nbsp;</i>Tools</a>
+                    <a href="tools.php" unlink><i class="ri-folder-2-line">&nbsp;</i>Tools</a>
                 </li>
                 <?php
-                $did = isset($_SESSION['toolcat']) ? $_SESSION['toolcat'] : null;
+                // var_dump( $_SESSION['tool_cat']);
                 
-                if ($did != null) {
-                    $dir = $toolsController->showTool($did);
-                    // echo $dir['name'];
-                    echo '<li>
-                                                                    <a href=""><i class="ri-folder-2-line">&nbsp;</i>' .
-                        $dir['name'] .
-                        '</a>
-                                                                </li>';
-                    echo '<li>
-                                                                    <a href=""><i class="ri-folder-2-line">&nbsp;</i>' .
-                    $tools['name'] .
-                    '</a>
-                                                                </li>';
+                if ($_SESSION['tool_cat']['id'] == $tools['tools_id']) {
+                    echo '<li><a href="tools.php?id=' . $_SESSION['tool_cat']['id'] . '"><i class="ri-folder-2-line">&nbsp;</i>' . $_SESSION['tool_cat']['name'] . '</a></li>';
+                } else {
+                    $tid = $tools['tools_id'];
+                    $tool_cat = $toolsController->showTool($tid);
+                
+                    echo '<li><a href="tools.php?id=' . $tid . '"><i class="ri-folder-2-line">&nbsp;</i>' . $tool_cat['name'] . '</a></li>';
                 }
-                session_destroy();
+                echo '<li><a href="tool_download.php?id=' . $id . '"><i class="ri-folder-2-line">&nbsp;</i>' . $tools['name'] . '</a></li>';
                 
                 ?>
             </ul>

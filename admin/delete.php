@@ -6,6 +6,7 @@ include_once __DIR__ . '/../controller/toolsController.php';
 include_once __DIR__ . '/../controller/toolDownController.php';
 include_once __DIR__ . '/../controller/boxController.php';
 include_once __DIR__ . '/../controller/boxDownController.php';
+include_once __DIR__ . '/../controller/PackageController.php';
 
 // var_dump($id);
 $id = $_POST['id'];
@@ -29,3 +30,6 @@ $delete = $box_controller->deleteBox($id);
 
 $box_down_controller = new boxDownController();
 $delete = $box_down_controller->deleteBox($id);
+
+$package_controller = new PackageController();
+$deleete = $package_controller->deletePackage($id);

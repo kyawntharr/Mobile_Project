@@ -5,21 +5,21 @@ include_once __DIR__ . '/../controller/accountsController.php';
 
 $users_controller = new RegisterController();
 $acc_controller = new AccountsController();
-$acc_id=2;
+$acc_id = 2;
 $users = $acc_controller->getUserAccount($acc_id);
 ?>
 
-    <div class="col-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title my-2">Users</h4>
-                <p class="card-description"> Admin<code>/users</code></p>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title my-2">Users</h4>
+            <p class="card-description"> Admin<code>/users</code></p>
 
-                <a class="btn btn-outline-success my-3" href="register.php">Add New User +</a>
+            <a class="btn btn-outline-success my-3" href="register.php">Add New User +</a>
 
-                <div class="table-responsive">
-                    <table class="table table-dark" id="mytable">
-                        <thead>
+            <div class="table-responsive">
+                <table class="table table-dark" id="mytable">
+                    <thead>
                         <tr>
                             <th> No</th>
                             <th> Name</th>
@@ -30,30 +30,39 @@ $users = $acc_controller->getUserAccount($acc_id);
                             <th> Updated Date</th>
                             <th>Actions</th>
                         </tr>
-                        </thead>
-                        <tbody>
+                    </thead>
+                    <tbody>
 
                         <?php
                         $count = 1;
+                        
                         foreach ($users as $user) {
+                            $name = $user['name'];
+                            $email = $user['email'];
+                            $password = $user['password'];
+                            $imageSrc = '../uploads/' . $user['image'];
+                            $createdDate = $user['created_at'];
+                            $updatedDate = $user['updated_at'];
+                            $userId = $user['id'];
+                        
                             echo '<tr>';
                             echo '<td>' . $count++ . '</td>';
-                            echo '<td>' . $user['name'] . '</td>';
-                            echo '<td>' . $user['email'] . '</td>';
-                            echo '<td>' . $user['password'] . '</td>';
-                            echo "<td><img src='../uploads/".$user['image']."' alt='' style='width: 60px;height:80px;' class='rounded-0'></td>";
-                            echo '<td>' . $user['created_at'] . '</td>';
-                            echo '<td>' . $user['updated_at'] . '</td>';
-                            echo '<td><a class="btn btn-outline-primary mx-3" href="user_edit.php?id='.$user['id'].'&type=user">Edit</a>';
+                            echo '<td>' . $name . '</td>';
+                            echo '<td>' . $email . '</td>';
+                            echo '<td>' . $password . '</td>';
+                            echo "<td><img src='$imageSrc' alt='' style='width: 60px;height:80px;' class='rounded-0'></td>";
+                            echo '<td>' . $createdDate . '</td>';
+                            echo '<td>' . $updatedDate . '</td>';
+                            echo "<td><a class='btn btn-outline-primary mx-3' href='user_edit.php?id=$userId&type=user'>Edit</a>";
                             echo '</tr>';
                         }
                         ?>
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>
 <?php
 include_once __DIR__ . '/../layouts/admin_footer.php';
 ?>

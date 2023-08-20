@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once __DIR__.'/layouts/header.php';
 include_once __DIR__.'/controller/registerController.php';
 $register_controller=new RegisterController();

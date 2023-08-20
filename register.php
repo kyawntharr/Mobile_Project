@@ -1,5 +1,4 @@
 <?php
-session_start();
 // convert illegal input value to ligal value formate
 function text_input($value) {
 	$value = trim($value);
