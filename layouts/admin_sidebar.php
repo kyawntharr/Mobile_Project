@@ -143,7 +143,22 @@
                         <span class="menu-title">Packages</span>
                     </a>
                 </li>
-
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="app_tutorials.php">
+                        <span class="menu-icon">
+                            <i class="ri-video-line"></i>
+                        </span>
+                        <span class="menu-title">Tutorials</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="app_service.php">
+                        <span class="menu-icon">
+                            <i class="ri-questionnaire-line"></i>
+                        </span>
+                        <span class="menu-title">Servie FAQ</span>
+                    </a>
+                </li>
 
                 <li class="nav-item menu-items">
                     <a class="nav-link" href="app_contact.php">

@@ -8,16 +8,17 @@ $brandsController = new brandsController();
 $getAllBrands = $brandsController->getAllBrands();
 
 $reg_controller = new RegisterController();
+
 $acc_controller = new AccountsController();
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 }
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    // echo $user_id;
     $acc_id = $acc_controller->getAccountId($user_id);
     $_SESSION['acc_id'] = $acc_id;
 }
+
 $brandsController = new brandsController();
 $getAllBrands = $brandsController->getAllBrands();
 
@@ -99,7 +100,7 @@ $getAllBrands = $brandsController->getAllBrands();
                         $user = $reg_controller->getUser($email);
                     ?>
                     <a href=""><span class="me-2 btn-sm"
-                            data-wow-delay="0.2s" type="submit"><?php echo strtoupper($user['name']); ?>
+                            data-wow-delay="0.2s" type="submit"><?php echo ucwords($user['name']); ?>
                         </span></a>
                     <a href="logout.php"><button
                             class="btn btn-sm btn-danger" type="submit">Logout</button></a>

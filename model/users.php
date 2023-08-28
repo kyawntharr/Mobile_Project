@@ -6,18 +6,19 @@ class users
     public function getAllUsersInfo()
     {
         $con = Database::connect();
-        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = 'SELECT * FROM users WHERE 1';
         $stament = $con->prepare($sql);
 
-        if ($stament->execute()){
+        if ($stament->execute()) {
             $result = $stament->fetchAll(PDO::FETCH_ASSOC);
         }
         return $result;
     }
 
-    public function AddnewUserInfo(){
+    public function AddnewUserInfo()
+    {
         $con = Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

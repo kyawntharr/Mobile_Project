@@ -9,8 +9,7 @@ class Account
         $con = Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //2. write sql
-        $sql = "insert into accounts (users_id,account_type_id)
-          values (:users_id,:account_type_id)";
+        $sql = 'insert into accounts (users_id,account_type_id) values (:users_id,:account_type_id)';
         $statement = $con->prepare($sql);
         $statement->bindParam(':users_id', $user_id);
         $statement->bindParam(':account_type_id', $account_type);

@@ -35,25 +35,16 @@ $users = $acc_controller->getUserAccount($acc_id);
 
                         <?php
                         $count = 1;
-                        
                         foreach ($users as $user) {
-                            $name = $user['name'];
-                            $email = $user['email'];
-                            $password = $user['password'];
-                            $imageSrc = '../uploads/' . $user['image'];
-                            $createdDate = $user['created_at'];
-                            $updatedDate = $user['updated_at'];
-                            $userId = $user['id'];
-                        
                             echo '<tr>';
                             echo '<td>' . $count++ . '</td>';
-                            echo '<td>' . $name . '</td>';
-                            echo '<td>' . $email . '</td>';
-                            echo '<td>' . $password . '</td>';
-                            echo "<td><img src='$imageSrc' alt='' style='width: 60px;height:80px;' class='rounded-0'></td>";
-                            echo '<td>' . $createdDate . '</td>';
-                            echo '<td>' . $updatedDate . '</td>';
-                            echo "<td><a class='btn btn-outline-primary mx-3' href='user_edit.php?id=$userId&type=user'>Edit</a>";
+                            echo '<td>' . $user['name'] . '</td>';
+                            echo '<td>' . $user['email'] . '</td>';
+                            echo '<td>' . $user['password'] . '</td>';
+                            echo "<td><img src='../uploads/" . $user['image'] . "' alt='' style='width: 60px;height:80px;' class='rounded-0'></td>";
+                            echo '<td>' . $user['created_at'] . '</td>';
+                            echo '<td>' . $user['updated_at'] . '</td>';
+                            echo '<td><a class="btn btn-outline-primary mx-3" href="user_edit.php?id=' . $user['id'] . '&type=user">Edit</a>';
                             echo '</tr>';
                         }
                         ?>

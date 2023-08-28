@@ -3,12 +3,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
 include_once __DIR__ . '/../vendor/PHPMailer/src/PHPMailer.php';
 include_once __DIR__ . '/../vendor/PHPMailer/src/SMTP.php';
 include_once __DIR__ . '/../vendor/PHPMailer/src/Exception.php';
-
-// Include the Register class if it's not already included
 include_once __DIR__ . '/../model/register.php';
 
 class RegisterController extends Register
@@ -57,7 +54,7 @@ class RegisterController extends Register
         $mailer->addAddress($to, 'Dear Customer');
 
         $mailer->Subject = 'Hello! Dear customer!';
-        $mailer->Body = 'Your code - ' . $message;
+        $mailer->Body = 'Your Verification Code is- ' . $message;
         $mailer->AltBody = 'Plain';
 
         if ($mailer->send()) {
