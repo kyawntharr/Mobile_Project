@@ -32,7 +32,8 @@ if (isset($_POST['submit'])) {
         $detail = text_input($_POST['details']);
     }
     $image = $_FILES['image'];
-
+    $buy_link = $_POST['buy_link'];
+    
     if (!empty($image)) {
         if ($image['error'] == 0) {
             $filename = $image['name'];
@@ -61,7 +62,7 @@ if (isset($_POST['submit'])) {
         $imageErr = 'Please choose image for package!';
     }
     if (empty($nameErr) && empty($amountErr) && empty($detailErr) && empty($imageErr)) {
-        $status = $package_controller->addPackage($name, $amount, $filename, $detail);
+        $status = $package_controller->addPackage($name, $amount, $filename, $detail, $buy_link);
         if ($status) {
             echo "<script>location.href='app_package.php'</script>";
         }
@@ -101,6 +102,12 @@ if (isset($_POST['submit'])) {
                     <textarea name="details" id="summernote" cols="30" rows="10" class="form-control mb-3"></textarea>
                     <span class="text-danger fs-5"><?php echo $detailErr; ?></span>
                 </div>
+
+                <div class="form-group">
+                    <label for="">Buying Link</label>
+                    <input type="text" name="buy_link" class="form-control" placeholder="Buying Link" required>
+                </div>
+
                 <div class="form-group">
                     <button type="submit" name="submit" class="btn btn-primary mr-2">Submit</button>
                     <button type="cancel" class="btn btn-dark">Cancel</button>

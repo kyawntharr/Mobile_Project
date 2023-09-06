@@ -28,11 +28,14 @@ if (isset($_POST['submit'])) {
     } else {
         $amount = text_input($_POST['amount']);
     }
+
     if (empty($_POST['details'])) {
         $detailErr = "Details is required!";
     } else {
         $detail = text_input($_POST['details']);
     }
+    $buy_name = $_POST['buy_link'];
+
     $image = $_FILES['image'];
     $filename = $package['image'];
     if (!empty($image['name'])) {
@@ -61,7 +64,7 @@ if (isset($_POST['submit'])) {
         }
     }
     if (empty($nameErr) && empty($amountErr) && empty($detailErr) && empty($imageErr)) {
-        $status = $package_controller->updatePackage($id, $name, $amount, $filename, $detail);
+        $status = $package_controller->updatePackage($id, $name, $amount, $filename, $detail,$buy_name);
         if ($status) {
             echo "<script>location.href='app_package.php'</script>";
         }
@@ -106,6 +109,12 @@ if (isset($_POST['submit'])) {
                     <textarea name="details" id="summernote" cols="30" rows="10" class="form-control mb-3"> <?php echo $package['details']; ?> </textarea>
                     <span class="text-danger fs-5"><?php echo $detailErr; ?></span>
                 </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Buying Link</label>
+                    <input type="text" name="buy_link" class="form-control" id="exampleInputName1" value="<?php echo $package['buying_link']; ?>" required>
+                </div>
+
                 <div class="form-group">
 
                     <button type="submit" name="submit" class="btn btn-primary mr-2">Submit</button>

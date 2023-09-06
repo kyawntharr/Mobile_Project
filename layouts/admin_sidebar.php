@@ -169,7 +169,7 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="app_team.php">
                         <span class="menu-icon">
                             <i class="mdi mdi mdi-human-male-female"></i>
                         </span>

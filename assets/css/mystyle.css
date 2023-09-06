@@ -9,7 +9,29 @@ font-family: zawgyi-one,"Tajawal", sans-serif;
 .dropdown:hover .dropdown-menu {
 display: block;
 margin-top: 0;
+letter-spacing: 2px;
 }
+
+.custom-dropdown-item{
+color: white;
+}
+
+.custom-dropdown-item:hover,
+.custom-dropdown-item:focus {
+font-weight: 550;
+border-bottom: 2px solid #77d02f;
+transform-style: flat;
+color: #000;
+background-color: #999999;
+text-shadow: 1px 1px 3px #000;
+}
+
+.dropdown-menu{
+    background-color: #262626;
+}
+
+
+
 
 @font-face {
 font-family: zawgyi-one;
@@ -50,7 +72,7 @@ text-align: justify;
 }
 
 .package_title {
-font-size: 1.8em;
+font-size: 1.6em;
 font-weight: 600;
 }
 
@@ -58,21 +80,35 @@ font-weight: 600;
 font-size: 1.2em;
 }
 
-.pk_btn a {
+.pk_btn{
 color: #5c9f24;
 font-weight: 500;
 /*background-color: #77d02f;*/
 border: 2px solid #5c9f24;
 }
 
-.pk_btn a:hover,
-.pk_btn a:focus {
+.pk_btn:hover,
+.pk_btn:focus {
 color: #fff;
 font-weight: 500;
 background-color: #5c9f24;
 border: 2px solid #5c9f24;
 }
 
+.pk_btn_buy{
+font-weight: 500;
+background-color: #5c9f24;
+border: 2px solid #487d1c;
+text-shadow: 1px 1px 2px #000;
+}
+
+.pk_btn_buy:hover,
+.pk_btn_buy:focus {
+color: #fff;
+font-weight: 500;
+background-color: #6cbb2a;
+border: 2px solid #487d1c;
+}
 /*package end*/
 
 .mmst {
@@ -89,10 +125,10 @@ text-shadow: 1px 1px 2px #000;
 }
 
 .nav-link {
-color: #b3b3b3;
+color: #d9d9d9;
 border-bottom: 2px solid transparent;
 font-size: 1.1em;
-letter-spacing: 1px;
+letter-spacing: 2px;
 }
 
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show,
@@ -103,15 +139,7 @@ transform-style: flat;
 color: #77d02f;
 }
 
-.dropdown-item:hover,
-.dropdown-item:focus {
-font-weight: 550;
-border-bottom: 2px solid #77d02f;
-transform-style: flat;
-color: #77d02f;
-background-color: gray;
-text-shadow: 2px 2px 3px #000;
-}
+
 
 .navbar-brand {
 font-size: 2.2em;
@@ -148,6 +176,7 @@ border: 1px solid gray;
 color: whitesmoke;
 box-shadow: 2px 3px #3c6818;
 }
+
 
 .main_card {
 border-top: 1px solid #5c9f24;
@@ -288,8 +317,8 @@ font-size: 1.1em;
 
 .address a:hover,
 .address a:focus {
-color: #93d959;
-text-shadow: 1px 1px 2px #6cbb2a;
+color: #00ff00;
+/* text-shadow: 1px 1px 2px #6cbb2a; */
 }
 
 .social_link a {

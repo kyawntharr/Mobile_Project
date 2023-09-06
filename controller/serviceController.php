@@ -11,6 +11,16 @@ class serviceController extends service
     {
         return $this->createfaqInfo($title, $content);
     }
+
+    public function showfaq($id)
+    {
+        return $this->showfaqInfo($id);
+    }
+
+    public function updatefaq($id, $title, $content)
+    {
+        return $this->updatefaqInfo($id, $title, $content);
+    }
 }
 
 ?>

@@ -19,9 +19,10 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
                 </li>
 
                 <?php
-                if ($id != null) {
                     $dir = $box_controller->showBox($id);
                     $_SESSION['box_cat'] = $dir;
+                if ($id != null) {
+                    // $boxt_cat = $_SESSION['box_cat'];
                     echo '<li>
                                     <a href=""><i class="ri-folder-2-line">&nbsp;</i>' .
                         $dir['name'] .

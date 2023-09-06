@@ -19,19 +19,19 @@ class Package
         }
         return $result;
     }
-    public function createPackage($name, $amount, $filename, $detail)
+    public function createPackage($name, $amount, $filename, $detail, $buy_link)
     {
         //1.db connection
         $con = Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //2. write sql
-        $sql = "insert into packages(name,amount,image,details)
-     values (:name,:amount,:image,:details)";
+        $sql = 'insert into packages(name,amount,image,details,buying_link) values (:name,:amount,:image,:details,:buy_link)';
         $statement = $con->prepare($sql);
         $statement->bindParam(':name', $name);
         $statement->bindParam(':amount', $amount);
         $statement->bindParam(':image', $filename);
         $statement->bindParam(':details', $detail);
+        $statement->bindParam(':buy_link', $buy_link);
 
         if ($statement->execute()) {
             return true;
@@ -56,19 +56,20 @@ class Package
         }
         return $result;
     }
-    public function editPackage($id, $name, $amount, $filename, $detail)
+    public function editPackage($id, $name, $amount, $filename, $detail, $buy_name)
     {
         //1.db connection
         $con = Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //2. write sql
-        $sql = 'update packages set name=:name,amount=:amount,image=:image,details=:details where id=:id';
+        $sql = 'update packages set name=:name,amount=:amount,image=:image,details=:details,buying_link=:buy_name where id=:id';
         $statement = $con->prepare($sql);
         $statement->bindParam(':id', $id);
         $statement->bindParam(':name', $name);
         $statement->bindParam(':amount', $amount);
         $statement->bindParam(':image', $filename);
         $statement->bindParam(':details', $detail);
+        $statement->bindParam(':buy_name', $buy_name);
         if ($statement->execute()) {
             return true;
         } else {

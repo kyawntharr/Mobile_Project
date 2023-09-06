@@ -23,6 +23,7 @@ $packages = $package_controller->getPackage();
                             <th> Image</th>
                             <th> Amount</th>
                             <th> Details</th>
+                            <th> Buying Link</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -38,6 +39,7 @@ $packages = $package_controller->getPackage();
                                 <td><img src="../uploads/<?php echo $package['image']; ?>" alt="" style="width: 60px;height:80px;" class="rounded-0"></td>
                                 <td><?php echo $package['amount']; ?></td>
                                 <td><?php echo $package['details']; ?></td>
+                                <td><?php echo $package['buying_link']; ?></td>
                                 <td id='<?php echo $package['id']; ?>'><a class="btn btn-outline-primary mx-3" href="edit_package.php?id=<?php echo $package['id']; ?>"><i class="ri-pencil-line"></i>Edit</a>
                                     <a class="btn btn-outline-danger delete_btn_ajax" href="javascript:void(0)"><i class="ri-delete-bin-2-line"></i>Delete</a>
                                 </td>

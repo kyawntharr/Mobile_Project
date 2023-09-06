@@ -40,11 +40,8 @@ $getAllBrands = $brandsController->getAllBrands();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&family=Poppins:ital,wght@1,500;1,800&family=Tajawal:wght@500;700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&family=Tangerine:wght@700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&family=Poppins:ital,wght@1,500;1,800&family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@700&family=Tangerine:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/mystyle.css">
 </head>
 
@@ -58,9 +55,7 @@ $getAllBrands = $brandsController->getAllBrands();
                     <img src="assets/images/logo_white.png" alt="Bootstrap" style="width: 30px; height: 24px">
                 </a>
 
-                <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -70,15 +65,14 @@ $getAllBrands = $brandsController->getAllBrands();
                             <a class="nav-link" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item dropdown" data-wow-delay="0.2s">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Firmwares
                             </a>
                             <ul class="dropdown-menu  animate__animated animate__flipInY">
 
                                 <?php
                                 foreach ($getAllBrands as $getBrand) {
-                                    echo '<li class="animate__animated animate__flipInY wow" data-wow-delay="0.3s"><a class="dropdown-item" href="models.php?id=' . $getBrand['id'] . '">' . $getBrand['name'] . '</a></li>';
+                                    echo '<li class="animate__animated animate__flipInY wow" data-wow-delay="0.3s"><a class="dropdown-item custom-dropdown-item" href="models.php?id=' . $getBrand['id'] . '">' . $getBrand['name'] . '</a></li>';
                                 }
                                 ?>
                             </ul>
@@ -93,25 +87,35 @@ $getAllBrands = $brandsController->getAllBrands();
                             <a class="nav-link" href="box.php">Box</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                            <a class="nav-link" href="#about">About</a>
                         </li>
                     </ul>
                     <?php if (isset($acc_id)) {
                         $user = $reg_controller->getUser($email);
                     ?>
-                    <a href=""><span class="me-2 btn-sm"
-                            data-wow-delay="0.2s" type="submit"><?php echo ucwords($user['name']); ?>
-                        </span></a>
-                    <a href="logout.php"><button
-                            class="btn btn-sm btn-danger" type="submit">Logout</button></a>
+                        <!-- <div class="team_img text-center px-2">
+                            <img src="uploads/<?php echo $user['image'] ?>" alt="" class="img-fluid rounded-fill border bg-white" style="height: 45px; width: 45px">
+                        </div> -->
+
+                        <a href=""><span class="me-2 btn-sm" data-wow-delay="0.2s" type="submit"><?php echo ucwords($user['name']); ?>
+                            </span></a>
+
+                        <!-- <div class="dropdown">
+                            <span class="text-white dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+                                <?php echo ucwords($user['name']); ?>
+                            </span>
+                            <div class="dropdown-menu bg-dark border p-0 w-25">
+                                <a href="logout.php" class="dropdown-item bg-white border-0 text-dark">Logout</a>
+                            </div>
+                        </div> -->
+
+                        <a href="logout.php"><button class="btn btn-sm btn-danger" type="submit">Logout</button></a>
+
+
                     <?php } else { ?>
-                    <a href="register.php"><button
-                            class="btn me-2 btn-sm animate__animated animate__bounceInRight wow login_btn"
-                            data-wow-delay="0.2s" type="submit">Register
-                        </button></a>
-                    <a href="signin.php"><button
-                            class="btn  btn-sm animate__animated animate__bounceInRight wow register_btn"
-                            data-wow-delay="0.5s" type="submit">Login</button></a>
+                        <a href="register.php"><button class="btn me-2 btn-sm animate__animated animate__bounceInRight wow login_btn" data-wow-delay="0.2s" type="submit">Register
+                            </button></a>
+                        <a href="signin.php"><button class="btn  btn-sm animate__animated animate__bounceInRight wow register_btn" data-wow-delay="0.5s" type="submit">Login</button></a>
                     <?php } ?>
                 </div>
             </div>

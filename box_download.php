@@ -20,7 +20,8 @@ $show_box = $box_down_controller->showBoxdown($id);
                 </li>
                 <li>
                     <?php
-                    if ($_SESSION['box_cat']['id'] == $show_box['box_id']) {
+                    // echo $box_cat = $_SESSION['box_cat']. '<hr>';
+                    if ($_SESSION['box_cat'] == $show_box['box_id']) {
                         echo '<a href="box.php?id=' . $_SESSION['box_cat']['id'] . '" unlink><i class="ri-folder-2-line">&nbsp;</i>' . $_SESSION['box_cat']['name'] . '</a>';
                     } else {
                         $box_controller = new boxController();

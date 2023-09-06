@@ -2,12 +2,32 @@
 include_once __DIR__ . '/layouts/header.php';
 include_once __DIR__ . '/controller/packageController.php';
 include_once __DIR__ . '/controller/serviceController.php';
+include_once __DIR__ . '/controller/saleController.php';
+include_once __DIR__ . '/controller/registerController.php';
+include_once __DIR__ . '/controller/teamController.php';
 
 $package_controller = new PackageController();
 $packages = $package_controller->getPackage();
 
 $service_controller = new serviceController();
 $faqs = $service_controller->getAllfaq();
+
+$sale_controller = new saleController();
+$reg_controller = new RegisterController();
+
+$team_controller = new teamController();
+$teams = $team_controller->getAllMember();
+// echo $sale_user['user_id'];
+// echo $sale_user['packages_id'];
+
+// echo $user['id'];
+// echo $user['name'];
+
+// if (isset($_SESSION['user_id'])) {
+//     $user_id = $_SESSION['user_id'];
+//     $acc_id = $acc_controller->getAccountId($user_id);
+//     $_SESSION['acc_id'] = $acc_id;
+// }
 
 ?>
 <style>
@@ -103,6 +123,8 @@ $faqs = $service_controller->getAllfaq();
 
         <ul class="service-list pt-4">
             <?php
+
+
             foreach ($faqs as $faq) {
 
             ?>
@@ -145,9 +167,29 @@ $faqs = $service_controller->getAllfaq();
                         <li>And More tutorials...</li>
                     </ul>
                 </div>
-                <div class="card-footer border-0 justify-content-between d-flex pk_btn  bg-white">
-                    <a href="#" class="btn rounded-1"><i class="ri-information-line">&nbsp;</i>Details</a>
-                    <a href="https://buy.stripe.com/test_eVa4hj6vH0q6cgw148" class="btn rounded-1"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>
+                <div class="card-footer border-0 justify-content-between d-flex  bg-white">
+
+                    <a href="#" class="pk_btn btn rounded-1"><i class="ri-information-line">&nbsp;</i>Details</a>
+
+                    <?php
+                    if (isset($acc_id)) {
+                        $user = $reg_controller->getUser($email);
+                        $sale_user = $sale_controller->getSaleUser($user['id']);
+
+                        if ($sale_user['user_id'] === $user['id'] and $package['id'] === $sale_user['packages_id']) {
+                            // User has bought the package
+                            echo '<a href="tutorials.php" class="pk_btn_buy btn rounded-1 text-white"><i class="ri-video-line">&nbsp;</i>Tutorial</a>';
+                        } else {
+                            // User has not bought the package
+                            echo '<a href="' . $package['buying_link'] . '" class="pk_btn btn rounded-1" target="_blank"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';
+                        }
+                    } else {
+                        // User is not logged in
+                        echo '<a href="' . $package['buying_link'] . '" class="pk_btn btn rounded-1" target="_blank"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';
+                    }
+                    ?>
+
+
                 </div>
             </div>
         <?php } ?>
@@ -161,93 +203,69 @@ $faqs = $service_controller->getAllfaq();
     <div class="container g-0 p-3">
         <div class="row">
             <span class="display-3 align-items-center d-flex justify-content-around animate__animated animate__flipInX wow" data-wow-delay="0.2s">Team</span>
-            <p class="p-4 animate__animated wow animate__bounceInDown " data-wow-delay="0.5s">Lorem ipsum dolor sit
+            <!-- <p class="p-4 animate__animated wow animate__bounceInDown " data-wow-delay="0.5s">Lorem ipsum dolor sit
                 amet, consectetur adipisicing elit. Consequatur corporis dolor
                 explicabo laborum
                 nisi obcaecati odio optio voluptatem voluptatibus! Dolorem et ipsam sunt. Aperiam consequuntur dolores
-                eos quas sed! Vero.</p>
+                eos quas sed! Vero.</p> -->
+            <?php
 
-            <div class="card col-md-3 bg-white team_area border-0  wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
-                <div class="rounded-1 border border-1 team">
-                    <div class="team_img1 bg-white">
-                        <div class="p-3 d-flex align-items-center justify-content-around flex-column team_img2">
-                            <img src="assets/images/faces/face2.jpg" alt="" class="img-fluid rounded-circle" style="height: 150px; width: 150px">
+            foreach ($teams as $team) {
+            ?>
+                <div class="card col-md-3 bg-white team_area border-0  wow animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                    <div class="rounded-1 border border-1 team">
+                        <div class="team_img1 bg-white">
+                            <div class="p-3 d-flex align-items-center justify-content-around flex-column team_img2">
+                                <img src="uploads/team/<?php echo $team['image'] ?>" alt="" class="img-fluid rounded-circle" style="height: 130px; width: 130px">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="d-flex flex-column text-center team_detail">
-                        <span class="team_name">Nang Yu Yu Zin</span>
-                        <span>Web Template Design</span>
-                        <span>nangyu@gmail.com</span>
-                        <div class="py-3 align-items-center d-flex justify-content-center team_btn">
-                            <a href="#" class="btn btn-success btn-sm">Details</a>
+                        <div class="d-flex flex-column team_detail">
+                            <span class="team_name text-center"><?php echo $team['name'] ?></php></span>
+                            <span class="team_role text-center"><?php echo $team['role'] ?></span>
+
+                            <span class="team_dis px-3 pt-2"><?php echo substr($team['discription'], 0, 50) ?> ...</span>
+
+                            <div class="py-3 align-items-center d-flex justify-content-center team_btn">
+                                <a href="index.php?id='.<?php $team['id'] ?>.'" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#t_member<?php echo $team['id'] ?>">Details</a>
+                            </div>
+
+                            <div class="modal fade" id="t_member<?php echo $team['id'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex justify-content-center align-items-center">
+                                            <div class="team_img col-md-4 text-center">
+                                                <img src="uploads/team/<?php echo $team['image'] ?>" alt="" class="img-fluid rounded-circle" style="height: 80px; width: 80px">
+                                            </div>
+                                            <div class="row ">
+                                                <h3 class="modal-title" id="staticBackdropLabel"><?php echo $team['name'] ?></h3>
+                                                <span class="team_role"><?php echo $team['role'] ?></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <span class="team_dis px-3 pt-2"><?php echo $team['discription'] ?></span>
+                                            <br><br>
+                                            <div class="text-end">
+                                                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
-                    </div>
 
-                </div>
-
-            </div>
-            <div class="card col-md-3 bg-white team_area border-0 wow animate__animated animate__fadeInUp" data-wow-delay="0.5s">
-                <div class="rounded-1 border border-1 team">
-                    <div class="team_img1 bg-white">
-                        <div class="p-3 d-flex align-items-center justify-content-around flex-column team_img2">
-                            <img src="assets/images/faces/face1.jpg" alt="" class="img-fluid rounded-circle" style="height: 150px; width: 150px">
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-column text-center team_detail">
-                        <span class="team_name">Su Latt Waddy</span>
-                        <span>Web Template Design</span>
-                        <span>sulattwaddy@gmail.com</span>
-                        <div class="py-3 align-items-center d-flex justify-content-center team_btn">
-                            <a href="#" class="btn btn-success btn-sm">Details</a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="card col-md-3 bg-white team_area border-0 wow animate__animated animate__fadeInUp" data-wow-delay="0.8s">
-                <div class="rounded-1 border border-1 team">
-                    <div class="team_img1 bg-white">
-                        <div class="p-3 d-flex align-items-center justify-content-around flex-column team_img2">
-                            <img src="assets/images/faces/face3.jpg" alt="" class="img-fluid rounded-circle" style="height: 150px; width: 150px">
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-column text-center team_detail">
-                        <span class="team_name">Aung Thet Lwin</span>
-                        <span>Web Template Design</span>
-                        <span>aungthetlwin@gmail.com</span>
-                        <div class="py-3 align-items-center d-flex justify-content-center team_btn">
-                            <a href="#" class="btn btn-success btn-sm">Details</a>
-                        </div>
                     </div>
 
                 </div>
 
-            </div>
-            <div class="card col-md-3 bg-white team_area border-0 wow animate__animated animate__fadeInUp" data-wow-delay="1s">
-                <div class="rounded-1 border border-1 team">
-                    <div class="team_img1 bg-white">
-                        <div class="p-3 d-flex align-items-center justify-content-around flex-column team_img2">
-                            <img src="assets/images/faces/face4.jpg" alt="" class="img-fluid rounded-circle" style="height: 150px; width: 150px">
-                        </div>
-                    </div>
 
-                    <div class="d-flex flex-column text-center team_detail">
-                        <span class="team_name">Tester</span>
-                        <span>Web Template Design</span>
-                        <span>test@gmail.com</span>
-                        <div class="py-3 align-items-center d-flex justify-content-center team_btn">
-                            <a href="#" class="btn btn-success btn-sm">Details</a>
-                        </div>
-                    </div>
+            <?php
 
-                </div>
-
-            </div>
-
+            }
+            ?>
         </div>
 
     </div>

@@ -27,14 +27,14 @@ $faqs = $service_controller->getAllfaq();
                     </thead>
                     <tbody>
                         <?php
-
+                        $count = 1;
                         foreach ($faqs as $faq) {
                             echo '<tr>';
-                            echo '<td>' . $faq['id'] . '</td>';
+                            echo '<td>' . $count++ . '</td>';
                             echo '<td>' . $faq['title'] . '</td>';
-                            echo '<td>' . $faq['content'] . '</td>';
+                            echo '<td>' . substr($faq['content'],0,60) . ' more..</td>';
                             echo '<td id=' . $faq['id'] . '>
-                                <a class="btn btn-outline-primary mx-3" href="brand_edit.php?id=' . $faq['id'] . '"><i class="ri-pencil-line"></i>Edit</a>
+                                <a class="btn btn-outline-primary mx-3" href="service_edit.php?id=' . $faq['id'] . '"><i class="ri-pencil-line"></i>Edit</a>
                                 <a class="btn btn-outline-danger delete_btn_ajax" href="javascript:void(0)"><i class="ri-delete-bin-2-line"></i>Delete</a>
                             </td>';
                             echo '</tr>';

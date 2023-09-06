@@ -6,7 +6,7 @@ $data = $contact_controller->getcontact();
 
 ?>
 <!--footer section start-->
-<section class="container-fluid bg-dark  g-0 p-0 ">
+<section class="container-fluid bg-dark  g-0 p-0 " id="about">
     <div class="container g-0 ">
         <div class="row py-1">
             <span class="display-6 justify-content-center d-flex text-white py-5">Address...&nbsp;<img src="assets/images/logo_white.png" class="mt-2" alt="Bootstrap" style="width: 30px; height: 24px"></span>
@@ -14,15 +14,17 @@ $data = $contact_controller->getcontact();
                 <div class="row footer p-3 address">
                     <div class="col-md-5 d-flex flex-column">
                         <span><i class="ri-mail-send-line">&nbsp;&nbsp;</i>Mail&nbsp;&nbsp;:</span>
+
                         <span><i class="ri-phone-line">&nbsp;&nbsp;</i>Phone Number&nbsp;&nbsp;&nbsp;:</a></span>
+
                         <span><i class="ri-map-pin-2-line">&nbsp;&nbsp;</i>Address&nbsp;&nbsp;:</a></span>
                     </div>
                     <div class="col-md-7 d-flex flex-column">
                         <?php
                         foreach ($data as $item) {
-                            echo '<a href="#">'.$item['email'].'</a>';
-                            echo '<a href="#">'.$item['phone_number'].'</a>';
-                            echo '<a href="#">'.$item['address'].'</a>';
+                            echo '<a href="#" id="email">' . $item['email'] . '</a>';
+                            echo '<a href="#">+95' . $item['phone_number'] . '</a>';
+                            echo '<a href="#">' . $item['address'] . '</a>';
 
                         ?>
 
@@ -40,7 +42,7 @@ $data = $contact_controller->getcontact();
 
                         <a href="<?php echo $item['twitter'] ?>" class="px-3" id="twitter" target="_blank"><i class="ri-twitter-line">&nbsp;</i>Twitter</a>
                     </div>
-                    <?php }?>
+                <?php } ?>
                 </div>
 
             </div>
@@ -65,4 +67,5 @@ $data = $contact_controller->getcontact();
 <script>
     new WOW().init();
 </script>
+
 </html>
