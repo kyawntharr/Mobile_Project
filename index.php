@@ -194,7 +194,7 @@ $teams = $team_controller->getAllMember();
                 } else {
                     // User is not logged in
                     // echo '<a href="' . $package['buying_link'] . '" class="pk_btn btn rounded-1" target="_blank"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';
-                    echo '<a href="register.php" class="pk_btn btn rounded-1" target="_blank"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';
+                    echo '<a href="register.php" class="pk_btn btn rounded-1"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';
                 }
                 ?>
 

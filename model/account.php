@@ -72,4 +72,22 @@ class Account
         }
         return $result;
     }
+
+    public function getuserByIdInfo($id)
+    {
+        //1.db connection
+        $con = Database::connect();
+        $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //2. write sql
+        $sql = 'select * from accounts where id=:id';
+        $statement = $con->prepare($sql);
+        $statement->bindParam(':id', $id);
+        //3. sql excute
+        if ($statement->execute()) {
+            //4. result
+            //date fetch()==>one row, fetchall()==>multiple row
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+        }
+        return $result;
+    }
 }

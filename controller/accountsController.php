@@ -19,4 +19,9 @@ class AccountsController extends Account
     {
         return $this->getAccount($user_id);
     }
+
+    public function getuserById($id)
+    {
+        return $this->getuserByIdInfo($id);
+    }
 }

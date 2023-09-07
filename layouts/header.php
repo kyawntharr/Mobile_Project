@@ -90,29 +90,35 @@ $getAllBrands = $brandsController->getAllBrands();
                             <a class="nav-link" href="#about">About</a>
                         </li>
                     </ul>
-                    <?php if (isset($acc_id)) {
+                    <?php
+
+                    if (isset($acc_id)) {
+
                         $user = $reg_controller->getUser($email);
+                        // var_dump($acc_id);
+                        // if($acc_id['account_type_id ']){
+
+                        // }
+                        foreach ($acc_id as $role) {
+                            $hehe = $acc_controller->getuserById($role['id']);
+                            // var_dump($hehe);
+                            $role =  $hehe['account_type_id'];
+                            if ($role === 1) {
+                                echo '<a href=""><span class="me-2 btn-sm" data-wow-delay="0.2s" type="submit">' . ucwords($user['name']) . '</span></a>';
+                                echo '<a href="admin/index.php"><button class="btn btn-sm btn-success mx-2" type="submit">Admin Panel</button></a>';
+
+                                echo '<a href="logout.php"><button class="btn btn-sm btn-danger" type="submit">Logout</button></a>';
+                            } else {
+
                     ?>
-                        <!-- <div class="team_img text-center px-2">
-                            <img src="uploads/<?php echo $user['image'] ?>" alt="" class="img-fluid rounded-fill border bg-white" style="height: 45px; width: 45px">
-                        </div> -->
+                                <a href=""><span class="me-2 btn-sm" data-wow-delay="0.2s" type="submit"><?php echo ucwords($user['name']); ?>
+                                    </span></a>
 
-                        <a href=""><span class="me-2 btn-sm" data-wow-delay="0.2s" type="submit"><?php echo ucwords($user['name']); ?>
-                            </span></a>
-
-                        <!-- <div class="dropdown">
-                            <span class="text-white dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
-                                <?php echo ucwords($user['name']); ?>
-                            </span>
-                            <div class="dropdown-menu bg-dark border p-0 w-25">
-                                <a href="logout.php" class="dropdown-item bg-white border-0 text-dark">Logout</a>
-                            </div>
-                        </div> -->
-
-                        <a href="logout.php"><button class="btn btn-sm btn-danger" type="submit">Logout</button></a>
-
-
-                    <?php } else { ?>
+                                <a href="logout.php"><button class="btn btn-sm btn-danger" type="submit">Logout</button></a>
+                        <?php
+                            }
+                        }
+                    } else { ?>
                         <a href="register.php"><button class="btn me-2 btn-sm animate__animated animate__bounceInRight wow login_btn" data-wow-delay="0.2s" type="submit">Register
                             </button></a>
                         <a href="signin.php"><button class="btn  btn-sm animate__animated animate__bounceInRight wow register_btn" data-wow-delay="0.5s" type="submit">Login</button></a>
