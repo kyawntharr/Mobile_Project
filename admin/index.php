@@ -1,16 +1,45 @@
 <?php
 include_once __DIR__ . '/../layouts/admin_sidebar.php';
 include_once __DIR__ . '/../controller/tutorialsController.php';
+include_once __DIR__ . '/../controller/usersController.php';
 
 $tuto_controller = new tutorialsController();
 $ftotals = $tuto_controller->totalfreepackage();
 $ptotals = $tuto_controller->totalbypackage();
 
+$users_controller = new usersController();
+$usertotals = $users_controller->totaluser();
 ?>
 <div class="main-panel mt-5">
     <div class="content-wrapper">
 
         <div class="row">
+            <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="d-flex align-items-center align-self-start">
+                                    <?php
+                                    // var_dump($ptotals);
+                                    foreach ($usertotals as $usertotal) {
+                                    }
+                                    ?>
+                                    <h4>Total Users</h4>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="icon icon-box-success ">
+                                    <span class="mdi mdi-arrow-top-right icon-item"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <h6 class="text-muted font-weight-normal">Total - <?php echo $usertotal['total']; ?></h6>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -31,16 +60,17 @@ $ptotals = $tuto_controller->totalbypackage();
                                 </div>
                             </div>
                         </div>
-                        <h6 class="text-muted font-weight-normal">Total - <?php echo $total['total']; ?></h6>
+                        <h6 class="text-muted font-weight-normal">Total Tutotials - <?php echo $total['total']; ?></h6>
                     </div>
                 </div>
             </div>
+
             <?php
-                    foreach ($ptotals as $ptotal) {
-                        // var_dump($ptotal);
-                        ?>
-                        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                        <div class="card">
+            foreach ($ptotals as $ptotal) {
+                // var_dump($ptotal);
+            ?>
+                <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                    <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-9">
@@ -54,14 +84,15 @@ $ptotals = $tuto_controller->totalbypackage();
                                     </div>
                                 </div>
                             </div>
-                            <h6 class="text-muted font-weight-normal">Total - <?php echo $ptotal['total']; ?></h6>
-                            </div>
+                            <h6 class="text-muted font-weight-normal">Total Tutorials - <?php echo $ptotal['total']; ?></h6>
                         </div>
-                        </div>
-                    <?php
-                    }
-                    ?>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
         </div>
+
         <div class="row">
             <div class="col-md-12 col-xl-4 grid-margin stretch-card">
                 <div class="card">
@@ -72,43 +103,17 @@ $ptotals = $tuto_controller->totalbypackage();
                             <button class="add btn btn-primary todo-list-add-btn">Add</button>
                         </div>
                         <div class="list-wrapper">
-                            <ul class="d-flex flex-column-reverse text-white todo-list todo-list-custom">
-                                <li>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input class="checkbox" type="checkbox"> Create invoice </label>
-                                    </div>
-                                    <i class="remove mdi mdi-close-box"></i>
+                            <ul class="">
+                                <li>Total Income
+                                    <span class="mx-auto">300000ks</span>
                                 </li>
-                                <li>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input class="checkbox" type="checkbox"> Meeting with Alita </label>
-                                    </div>
-                                    <i class="remove mdi mdi-close-box"></i>
+                                <li>Total Income
+                                    <span class="mx-auto">300000ks</span>
                                 </li>
-                                <li class="completed">
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input class="checkbox" type="checkbox" checked> Prepare for presentation
-                                        </label>
-                                    </div>
-                                    <i class="remove mdi mdi-close-box"></i>
+                                <li>Total Income
+                                    <span class="mx-auto">300000ks</span>
                                 </li>
-                                <li>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input class="checkbox" type="checkbox"> Plan weekend outing </label>
-                                    </div>
-                                    <i class="remove mdi mdi-close-box"></i>
-                                </li>
-                                <li>
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input class="checkbox" type="checkbox"> Pick up kids from school </label>
-                                    </div>
-                                    <i class="remove mdi mdi-close-box"></i>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -118,7 +123,7 @@ $ptotals = $tuto_controller->totalbypackage();
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-row justify-content-between">
-                            <h4 class="card-title mb-1">Open Projects</h4>
+                            <h4 class="card-title mb-1">Sale Users</h4>
                             <p class="text-muted mb-1">Your data status</p>
                         </div>
                         <div class="row">
@@ -210,76 +215,6 @@ $ptotals = $tuto_controller->totalbypackage();
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Visitors by Countries</h4>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <i class="flag-icon flag-icon-us"></i>
-                                                </td>
-                                                <td>USA</td>
-                                                <td class="text-right"> 1500 </td>
-                                                <td class="text-right font-weight-medium"> 56.35% </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <i class="flag-icon flag-icon-de"></i>
-                                                </td>
-                                                <td>Germany</td>
-                                                <td class="text-right"> 800 </td>
-                                                <td class="text-right font-weight-medium"> 33.25% </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <i class="flag-icon flag-icon-au"></i>
-                                                </td>
-                                                <td>Australia</td>
-                                                <td class="text-right"> 760 </td>
-                                                <td class="text-right font-weight-medium"> 15.45% </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <i class="flag-icon flag-icon-gb"></i>
-                                                </td>
-                                                <td>United Kingdom</td>
-                                                <td class="text-right"> 450 </td>
-                                                <td class="text-right font-weight-medium"> 25.00% </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <i class="flag-icon flag-icon-ro"></i>
-                                                </td>
-                                                <td>Romania</td>
-                                                <td class="text-right"> 620 </td>
-                                                <td class="text-right font-weight-medium"> 10.25% </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <i class="flag-icon flag-icon-br"></i>
-                                                </td>
-                                                <td>Brasil</td>
-                                                <td class="text-right"> 230 </td>
-                                                <td class="text-right font-weight-medium"> 75.00% </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div id="audience-map" class="vector-map"></div>
                             </div>
                         </div>
                     </div>

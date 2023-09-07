@@ -17,11 +17,19 @@ class users
         return $result;
     }
 
-    public function AddnewUserInfo()
+    public function totaluserInfo()
     {
         $con = Database::connect();
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = '';
+        $sql = 'SELECT COUNT(id) as total FROM users';
+        $stament = $con->prepare($sql);
+        
+        if ($stament->execute()) {
+            $result = $stament->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $result;
     }
+
+
 }

@@ -8,8 +8,8 @@ class usersController extends users
         return $this->getAllUsersInfo();
     }
 
-    public function AddnewUser()
+    public function totaluser()
     {
-        return $this->AddnewUserInfo();
+        return $this->totaluserInfo();
     }
 }
