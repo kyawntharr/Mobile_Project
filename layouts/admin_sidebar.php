@@ -43,6 +43,23 @@
                                 <span class="count bg-success"></span>
                             </div>
                             <div class="profile-name">
+                                <!-- <?php
+                                // include_once __DIR__ . '/../controller/accountsController.php';
+                                // include_once __DIR__ . '/../controller/registerController.php';
+
+                                // $reg_controller = new RegisterController();
+                                // $acc_controller = new AccountsController();
+
+                                // if (isset($_SESSION['email'])) {
+                                //     $email = $_SESSION['email'];
+                                // }
+                                // if (isset($_SESSION['user_id'])) {
+                                //     $user_id = $_SESSION['user_id'];
+                                //     $acc_id = $acc_controller->getAccountId($user_id);
+                                //     $_SESSION['acc_id'] = $acc_id;
+                                // }
+
+                                ?> -->
                                 <h5 class="mb-0 font-weight-normal">Admin</h5>
                                 <span>Gold Member</span>
                             </div>
@@ -181,7 +198,7 @@
         </nav>
         <!-- partial -->
         <!-- for error see  mt-5 pt-5 -->
-        <div class="container-fluid page-body-wrapper pt-4">
+        <div class="container-fluid page-body-wrapper pt-3">
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar p-0 fixed-top d-flex flex-row">
                 <!-- <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">

@@ -41,5 +41,14 @@ class tutorialsController extends tutorials
     // {
     //     return $this->searchTutoInfo($id);
     // }
+
+    public function totalfreepackage()
+    {
+        return $this->totalfreepackageInfo();
+    }
+    public function totalbypackage()
+    {
+        return $this->totalbypackageInfo();
+    }
 }
 ?>

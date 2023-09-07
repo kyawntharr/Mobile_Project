@@ -143,5 +143,35 @@ LEFT JOIN (SELECT packages.name, tutorials.id AS tutorial_id FROM packages JOIN 
     //         return null;
     //     }
     // }
+
+    public function totalfreepackageInfo()
+    {
+        $connect = database::connect();
+        $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = 'SELECT COUNT(id)as total FROM tutorials WHERE package_id is null';
+        $state = $connect->prepare($sql);
+        if ($state->execute()) {
+            $result = $state->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } else {
+            return null;
+        }
+    }
+
+    public function totalbypackageInfo()
+    {
+        $connect = database::connect();
+        $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = 'SELECT packages.name ,COUNT(tutorials.id)as total FROM tutorials JOIN packages ON tutorials.package_id = packages.id GROUP BY package_id';
+        $state = $connect->prepare($sql);
+        if ($state->execute()) {
+            $result = $state->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } else {
+            return null;
+        }
+    }
 }
 ?>
