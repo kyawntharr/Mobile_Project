@@ -23,7 +23,8 @@ $tools = $tool_Down_Controller->showAllTollDown($id);
                 <?php
                 // var_dump( $_SESSION['tool_cat']);
                 
-                if ($_SESSION['tool_cat']['id'] == $tools['tools_id']) {
+                // if ($_SESSION['tool_cat']['id'] == $tools['tools_id']) {
+                if ($_SESSION['tool_cat'] == $tools['tools_id']) {
                     echo '<li><a href="tools.php?id=' . $_SESSION['tool_cat']['id'] . '"><i class="ri-folder-2-line">&nbsp;</i>' . $_SESSION['tool_cat']['name'] . '</a></li>';
                 } else {
                     $tid = $tools['tools_id'];

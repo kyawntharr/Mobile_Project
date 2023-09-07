@@ -36,5 +36,10 @@ class tutorialsController extends tutorials
     {
         return $this->getTutoByPackInfo($id);
     }
+
+    // public function searchTuto($id)
+    // {
+    //     return $this->searchTutoInfo($id);
+    // }
 }
 ?>

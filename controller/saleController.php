@@ -7,5 +7,9 @@ class saleController extends sale
     {
         return $this->getuserInfo($id);
     }
+    public function getallsaleuser()
+    {
+        return $this->getallsaleuserInfo();
+    }
 }
 ?>

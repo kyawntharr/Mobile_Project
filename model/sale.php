@@ -19,6 +19,20 @@ class sale
 
         return $result;
     }
+    public function getallsaleuserInfo()
+    {
+        $connect = database::connect();
+        $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $sql = 'SELECT * FROM sale'; // Use :id as a placeholder
+        $state = $connect->prepare($sql);
+
+        if ($state->execute()) {
+            $result = $state->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $result;
+    }
+
 
 }
 ?>

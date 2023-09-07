@@ -22,7 +22,7 @@ $data = $contact_controller->getcontact();
                     <div class="col-md-7 d-flex flex-column">
                         <?php
                         foreach ($data as $item) {
-                            echo '<a href="#" id="email">' . $item['email'] . '</a>';
+                            echo '<a href="https://mail.google.com/" id="email"target="_blank">' . $item['email'] . '</a>';
                             echo '<a href="#">+95' . $item['phone_number'] . '</a>';
                             echo '<a href="#">' . $item['address'] . '</a>';
 
@@ -36,11 +36,11 @@ $data = $contact_controller->getcontact();
                 <div class="row footer p-3">
                     <div class="col-md-6 d-flex social_link">
 
-                        <a href="<?php echo $item['facebook'] ?>" target="_blank" id="facebook" class="px-3" target="_blank"><i class="ri-facebook-box-line">&nbsp;</i>Facebook</a>
+                        <a href="<?php echo $item['facebook']; ?>" target="_blank" id="facebook" class="px-3" target="_blank"><i class="ri-facebook-box-line">&nbsp;</i>Facebook</a>
 
-                        <a href="<?php echo $item['youtube'] ?>" class="px-3" id="youtube" target="_blank"><i class="ri-youtube-line">&nbsp;</i>Youtube</a>
+                        <a href="<?php echo $item['youtube']; ?>" class="px-3" id="youtube" target="_blank"><i class="ri-youtube-line">&nbsp;</i>Youtube</a>
 
-                        <a href="<?php echo $item['twitter'] ?>" class="px-3" id="twitter" target="_blank"><i class="ri-twitter-line">&nbsp;</i>Twitter</a>
+                        <a href="<?php echo $item['twitter']; ?>" class="px-3" id="twitter" target="_blank"><i class="ri-twitter-line">&nbsp;</i>Twitter</a>
                     </div>
                 <?php } ?>
                 </div>
@@ -66,6 +66,7 @@ $data = $contact_controller->getcontact();
 </body>
 <script>
     new WOW().init();
+
 </script>
 
 </html>

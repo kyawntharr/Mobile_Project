@@ -19,13 +19,13 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
 
                 <?php
                 // $_SESSION['toolcat'] = $id;
-                // $dir = $toolsController->showTool($id);
-                // $_SESSION['tool_cat'] = $dir;
+                $dir = $toolsController->showTool($id);
+                $_SESSION['tool_cat'] = $dir;
 
                 if ($id != null) {
                     $_SESSION['toolcat'] = $id;
-                    $dir = $toolsController->showTool($id);
-                    $_SESSION['tool_cat'] = $dir;
+                    // $dir = $toolsController->showTool($id);
+                    // $_SESSION['tool_cat'] = $dir;
                 
                     echo '<li>
                                                                                                     <a href=""><i class="ri-folder-2-line">&nbsp;</i>' .

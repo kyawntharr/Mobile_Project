@@ -8,7 +8,11 @@ class tutorials
         $connect = Database::connect();
         $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = 'SELECT tutorials.*, pname.name FROM tutorials LEFT JOIN (SELECT packages.name, tutorials.id AS tutorial_id FROM packages JOIN tutorials ON tutorials.package_id = packages.id) AS pname ON tutorials.id = pname.tutorial_id';
+        // $sql = 'SELECT tutorials.*, pname.name FROM tutorials LEFT JOIN (SELECT packages.name, tutorials.id AS tutorial_id FROM packages JOIN tutorials ON tutorials.package_id = packages.id) AS pname ON tutorials.id = pname.tutorial_id ORDER BY pname.name ASC';
+        $sql = 'SELECT tutorials.*, pname.name 
+FROM tutorials 
+LEFT JOIN (SELECT packages.name, tutorials.id AS tutorial_id FROM packages JOIN tutorials ON tutorials.package_id = packages.id) AS pname ON tutorials.id = pname.tutorial_id ORDER BY tutorials.id DESC
+';
         $state = $connect->prepare($sql);
         if ($state->execute()) {
             $result = $state->fetchAll(PDO::FETCH_ASSOC);
@@ -55,7 +59,7 @@ class tutorials
         $connect = Database::connect();
         $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = 'SELECT * FROM tutorials WHERE package_id IS NULL';
+        $sql = 'SELECT * FROM tutorials WHERE package_id IS NULL ORDER BY id DESC';
         $state = $connect->prepare($sql);
         if ($state->execute()) {
             $result = $state->fetchAll(PDO::FETCH_ASSOC);
@@ -104,11 +108,12 @@ class tutorials
         $connect = Database::connect();
         $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = 'SELECT tutorials.*, packages.name
-FROM tutorials
-LEFT JOIN packages ON tutorials.package_id = packages.id
-WHERE tutorials.package_id =:id OR tutorials.package_id IS NULL
-GROUP BY tutorials.title;';
+        //         $sql = 'SELECT tutorials.*, packages.name
+        // FROM tutorials
+        // LEFT JOIN packages ON tutorials.package_id = packages.id
+        // WHERE tutorials.package_id =:id OR tutorials.package_id IS NULL
+        // GROUP BY tutorials.title;';
+        $sql = 'SELECT tutorials.*, packages.name FROM tutorials LEFT JOIN packages ON tutorials.package_id = packages.id WHERE tutorials.package_id =:id OR tutorials.package_id IS NULL GROUP BY tutorials.title ORDER BY id DESC';
         $state = $connect->prepare($sql);
         $state->bindParam(':id', $id);
         if ($state->execute()) {
@@ -116,5 +121,27 @@ GROUP BY tutorials.title;';
         }
         return $result;
     }
+
+    // public function searchTutoInfo($name)
+    // {
+    //     try {
+    //         $connect = database::connect();
+    //         $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //         $sql = 'SELECT * FROM `tutorials` WHERE title LIKE :name';
+    //         $state = $connect->prepare($sql);
+    //         $state->bindValue(':name', '%' . $name . '%', PDO::PARAM_STR);
+
+    //         if ($state->execute()) {
+    //             $result = $state->fetchAll(PDO::FETCH_ASSOC);
+    //             return $result;
+    //         } else {
+    //             return null;
+    //         }
+    //     } catch (PDOException $e) {
+    //         // Handle any database errors here, e.g., log or display an error message.
+    //         return null;
+    //     }
+    // }
 }
 ?>
