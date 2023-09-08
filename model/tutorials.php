@@ -113,7 +113,12 @@ LEFT JOIN (SELECT packages.name, tutorials.id AS tutorial_id FROM packages JOIN 
         // LEFT JOIN packages ON tutorials.package_id = packages.id
         // WHERE tutorials.package_id =:id OR tutorials.package_id IS NULL
         // GROUP BY tutorials.title;';
-        $sql = 'SELECT tutorials.*, packages.name FROM tutorials LEFT JOIN packages ON tutorials.package_id = packages.id WHERE tutorials.package_id =:id OR tutorials.package_id IS NULL GROUP BY tutorials.title ORDER BY id DESC';
+        $sql = 'SELECT * 
+                FROM tutorials
+                LEFT JOIN sale ON tutorials.package_id = sale.packages_id 
+                LEFT JOIN packages ON sale.packages_id = packages.id 
+                WHERE sale.user_id = :id OR tutorials.package_id IS NULL
+                ORDER BY tutorials.id DESC';
         $state = $connect->prepare($sql);
         $state->bindParam(':id', $id);
         if ($state->execute()) {

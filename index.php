@@ -17,17 +17,7 @@ $reg_controller = new RegisterController();
 
 $team_controller = new teamController();
 $teams = $team_controller->getAllMember();
-// echo $sale_user['user_id'];
-// echo $sale_user['packages_id'];
 
-// echo $user['id'];
-// echo $user['name'];
-
-// if (isset($_SESSION['user_id'])) {
-//     $user_id = $_SESSION['user_id'];
-//     $acc_id = $acc_controller->getAccountId($user_id);
-//     $_SESSION['acc_id'] = $acc_id;
-// }
 ?>
 <style>
     .service {
@@ -178,19 +168,42 @@ $teams = $team_controller->getAllMember();
                 <?php
                 if (isset($acc_id)) {
                     $user = $reg_controller->getUser($email);
-                    $sale_user = $sale_controller->getSaleUser($user['id']);
-                    // var_dump($sale_user);
+                    $sale_user = $sale_controller->getuserbyuser($user['id']);
+                    $check_sale_user = $sale_controller->getSaleUser($user['id']);
+                    // var_dump($check_sale_user);
+
+                    // print_r($package['id']);
+                    // $pid = $package['id'];
                     if ($sale_user == true) {
-                        if ($sale_user['user_id'] === $user['id'] and $package['id'] === $sale_user['packages_id']) {
-                            // User has bought the package
-                            echo '<a href="tutorials.php" class="pk_btn_buy btn rounded-1 text-white"><i class="ri-video-line">&nbsp;</i>Tutorial</a>';
-                        } else {
-                            // User has not bought the package
-                            echo '<a href="' . $package['buying_link'] . '" class="pk_btn btn rounded-1" target="_blank"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';
+                        foreach ($sale_user as $sale) {
+                            // print_r($sale['user_id']);
+                            // echo $pid;
+                            // }
+                            // print_r($sale_user['user_id']);
+                            // print_r($user['id']);
+                            // print_r($sale['packages_id']);
+            
+                            // if ($sale_user == true) {
+                            // echo count($sale['user_id']);
+                            // 
+                            if (
+                                $sale['user_id'] === $user['id'] &&
+                                $package['id'] === $sale['packages_id']
+                            ) {
+                                // User has bought the package
+                                echo '<a href="tutorials.php" class="pk_btn_buy btn rounded-1 text-white"><i class="ri-video-line">&nbsp;</i>Tutorial</a>';
+                                // if($sale['user_id'])
+                            } else {
+                                // User has not bought the package
+                                echo '<a href="package_buying.php?id=' . $package['id'] . '" class="pk_btn btn rounded-1"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';
+                            }
                         }
-                    }else{
-                        echo '<a href="' . $package['buying_link'] . '" class="pk_btn btn rounded-1" target="_blank"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';
                     }
+                    else {
+                        echo '<a href="package_buying.php?id=' . $package['id'] . '" class="pk_btn btn rounded-1"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';
+                    }
+                
+                    
                 } else {
                     // User is not logged in
                     // echo '<a href="' . $package['buying_link'] . '" class="pk_btn btn rounded-1" target="_blank"><i class="ri-hand-coin-line">&nbsp;</i>Buy</a>';

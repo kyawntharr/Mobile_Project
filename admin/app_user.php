@@ -41,7 +41,7 @@ $users = $acc_controller->getUserAccount($acc_id);
                             echo '<td>' . $user['name'] . '</td>';
                             echo '<td>' . $user['email'] . '</td>';
                             echo '<td>' . $user['password'] . '</td>';
-                            echo "<td><img src='../uploads/" . $user['image'] . "' alt='' style='width: 60px;height:80px;' class='rounded-0'></td>";
+                            echo "<td><img src='../uploads/" . $user['image'] . "' alt='' style='width: 70px;height:70px;' class='rounded-0'></td>";
                             echo '<td>' . $user['created_at'] . '</td>';
                             echo '<td>' . $user['updated_at'] . '</td>';
                             echo '<td><a class="btn btn-outline-primary mx-3" href="user_edit.php?id=' . $user['id'] . '&type=user">Edit</a>';

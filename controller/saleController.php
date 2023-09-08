@@ -11,5 +11,10 @@ class saleController extends sale
     {
         return $this->getallsaleuserInfo();
     }
+
+    public function getuserbyuser($id)
+    {
+        return $this->getuserbyuserInfo($id);
+    }
 }
 ?>
